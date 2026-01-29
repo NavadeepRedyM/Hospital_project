@@ -30,13 +30,13 @@ private float duration;
 	@Column
 	private long availableSeats;
 	@Column
- 	private double price;
-	@Column
-	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-  	private Date departureDate;
-	@ManyToOne                       
-    @JoinColumn(name = "airline_id")
-    private Airlines airlines; 
+	private double price; // Field to store the flight price as a double
+	@Column // Maps this field to a database column
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") // Specifies the format required when binding date/time data from a web form
+  	private Date departureDate; // Field to store the exact departure date and time
+	@ManyToOne // Defines a many-to-one JPA relationship (Many Flights -> One Airline)
+    @JoinColumn(name = "airline_id") // Specifies the foreign key column name in the database table ('airline_id')
+    private Airlines airlines; // Field to hold the associated Airlines entity object
 
 	@Column
 	private String fclass;

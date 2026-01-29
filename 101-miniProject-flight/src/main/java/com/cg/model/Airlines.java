@@ -23,13 +23,14 @@ public class Airlines {
 	    @Column
 	    private String name;
 
-	    @OneToMany(mappedBy = "airlines",cascade = CascadeType.ALL) // Correct mapping for List of Entities
-	    private List<Flight> flights;
+	    @OneToMany(mappedBy = "airlines",cascade = CascadeType.ALL) // Configures a one-to-many relationship with cascade operations
+	    private List<Flight> flights; // A list holding all flights associated with this airline
 
-	    @ElementCollection                  // Correct mapping for List of Basic Types
-	    @CollectionTable(name = "airline_classes", joinColumns = @JoinColumn(name = "airline_id"))
-	    @Column(name = "class_name")
-	    private List<String> classes;
+	    @ElementCollection // Maps a collection of simple types (Strings) to a separate database table
+	    @CollectionTable(name = "airline_classes", joinColumns = @JoinColumn(name = "airline_id")) // Defines the name and join column for the collection table
+	    @Column(name = "class_name") // Names the column within the collection table that holds the class names
+	    private List<String> classes; // A list holding the available flight class names (e.g., "Economy", "Business")
+
 	    public Airlines() {
 	    	
 	    }
