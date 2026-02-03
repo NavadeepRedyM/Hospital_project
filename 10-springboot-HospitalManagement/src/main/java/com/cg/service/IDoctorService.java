@@ -6,15 +6,15 @@ import java.util.Optional;
 import com.cg.model.Doctor;
 
 public interface IDoctorService {
-	    Doctor saveDoctor(Doctor doctor);
 
-	    Optional<Doctor> findDoctorById(Long id);
+	    Doctor findDoctorById(Long id);
 
 	    List<Doctor> findAllDoctors();
 
 	    List<Doctor> findDoctorsByQualification(String qualification);
 
 	    void deleteDoctor(Long id);
+	    public Doctor getDoctorByUsername(String loggedInUserName);
 	}
 
 
