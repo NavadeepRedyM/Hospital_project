@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Book Appointment</h2>
+
+<form th:action="@{/patient/book-appointment}" th:object="${appointment}" method="post">
+    <label>Reason:</label>
+    <input type="text" th:field="*{reasonForVisit}" required />
+
+    <label>Date:</label>
+    <input type="date" th:field="*{appointmentDate}" required />
+
+    <label>Time Slot:</label>
+    <input type="text" th:field="*{timeSlot}" required />
+
+    <button type="submit">Book</button>
+</form>
+``
+</body>
+</html>

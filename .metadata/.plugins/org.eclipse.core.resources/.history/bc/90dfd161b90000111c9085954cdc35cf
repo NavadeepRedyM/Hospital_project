@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>My Bills</h2>
+
+<table>
+    <tr>
+        <th>Amount</th>
+        <th>Payment Status</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="b : ${bills}">
+        <td th:text="${b.totalAmount}"></td>
+        <td th:text="${b.paymentStatus}"></td>
+        <td th:text="${#dates.format(b.billingDate,'dd-MM-yyyy')}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>My Appointments</h2>
+
+	<table>
+		<tr>
+			<th>Doctor</th>
+			<th>Date</th>
+			<th>Status</th>
+		</tr>
+		<tr th:each="appt : ${appointments}">
+			<td th:text="${appt.doctor.name}"></td>
+			<td th:text="${#dates.format(appt.appointmentDate, 'dd-MM-yyyy')}"></td>
+			<td th:text="${appt.status}"></td>
+		</tr>
+	</table>
+</body>
+</html>

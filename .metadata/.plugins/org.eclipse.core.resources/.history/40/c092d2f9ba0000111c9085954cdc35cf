@@ -1,0 +1,38 @@
+package com.cg.service;
+
+import com.cg.model.Patient;
+import com.cg.model.User;
+import com.cg.repository.PatientRepository;
+import com.cg.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PatientService {
+
+    private final PatientRepository patientRepo;
+    private final UserRepository userRepo;
+
+    public PatientService(PatientRepository patientRepo, UserRepository userRepo) {
+        this.patientRepo = patientRepo;
+        this.userRepo = userRepo;
+    }
+
+    /** Returns existing Patient for username or creates one if missing. */
+    public Patient ensurePatientForUsername(String username) {
+        if (username == null || username.isBlank()) return null;
+
+        // confirm the login user exists
+        User user = userRepo.findByUsername(username).orElse(null);
+        if (user == null) return null;
+
+        String norm = username.trim();
+
+        return patientRepo.findByFullNameNormalized(norm)
+                .orElseGet(() -> {
+                    Patient p = new Patient();
+                    p.setFullName(norm);      // keep it equal to username
+                    // you can set defaults for other fields if you wish
+                    return patientRepo.save(p);
+                });
+    }
+}
