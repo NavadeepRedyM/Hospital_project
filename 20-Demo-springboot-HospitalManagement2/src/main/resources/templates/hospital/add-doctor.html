@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Add New Doctor</title></head>
+<body style="font-family:Segoe UI;background:#f4f7f6;padding:24px;">
+<div style="background:#fff;width:480px;margin:auto;padding:24px;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,.1);">
+  <h2>Add New Doctor</h2>
+  <form th:action="@{/admin/save-doctor}" th:object="${doctor}" method="post">
+    <label>Name</label>
+    <input type="text" th:field="*{name}" required style="width:100%"/>
+
+    <label>Qualification</label>
+    <input type="text" th:field="*{qualification}" required style="width:100%"/>
+
+    <label>Years of Experience</label>
+    <input type="number" th:field="*{yearsOfExperience}" style="width:100%"/>
+
+    <label>Consultation Fee</label>
+    <input type="number" step="0.01" th:field="*{consultationFee}" style="width:100%"/>
+
+    <label>Department</label>
+    <select th:field="*{department.id}" style="width:100%">
+      <option th:each="d : ${departments}" th:value="${d.id}" th:text="${d.deptName}"></option>
+    </select>
+
+    <label>Account Username</label>
+    <input type="text" th:field="*{user.username}" required style="width:100%"/>
+
+    <button type="submit" style="margin-top:10px;background:#27ae60;color:#fff;padding:10px 14px;border:none;border-radius:4px;">Register Doctor</button>
+    <a th:href="@{/admin/manage-doctors}" style="margin-left:6px;">Cancel</a>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+package com.cg.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SecurityConfig {
+
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	    http
+	        .authorizeHttpRequests(auth -> auth
+	            .requestMatchers("/login", "/css/**", "/js/**", "/redirect").permitAll() // ✅ ADD /redirect HERE
+	            .requestMatchers("/admin/**").hasRole("ADMIN")
+	            .requestMatchers("/doctor/**").hasRole("DOCTOR")
+	            .requestMatchers("/patient/**").hasRole("PATIENT")
+	            .anyRequest().authenticated()
+	        )
+	        .formLogin(form -> form
+	            .loginPage("/login")
+	            .defaultSuccessUrl("/redirect", true)
+	            .permitAll()
+	        )
+	        .logout(logout -> logout
+	            .logoutSuccessUrl("/login?logout")
+	            .permitAll()
+	        );
+	 
+	    return http.build();
+	}
+}

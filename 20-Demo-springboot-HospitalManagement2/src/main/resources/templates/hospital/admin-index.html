@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Admin Dashboard</title></head>
+<body style="font-family: Arial;background:#eef2f7;margin:0;padding:0;display:flex;">
+  <div style="width:250px;background:#2c3e50;color:white;height:100vh;padding:20px;box-sizing:border-box;">
+    <h4 style="color:#5dade2;">Admin Panel</h4>
+    <a href="#" style="display:block;color:#a0aec0;padding:10px 0;text-decoration:none;border-bottom:1px solid #3d566e;">Manage Departments</a>
+    <a th:href="@{/admin/manage-doctors}" style="display:block;color:#a0aec0;padding:10px 0;text-decoration:none;border-bottom:1px solid #3d566e;">Manage Doctors</a>
+    <a th:href="@{/admin/patients}" style="display:block;color:#a0aec0;padding:10px 0;text-decoration:none;border-bottom:1px solid #3d566e;">View Patients</a>
+    <a href="#" style="display:block;color:#a0aec0;padding:10px 0;text-decoration:none;border-bottom:1px solid #3d566e;">View Appointments</a>
+    <a href="#" style="display:block;color:#a0aec0;padding:10px 0;text-decoration:none;border-bottom:1px solid #3d566e;">Billing Reports</a>
+    <form action="/logout" method="post" style="margin-top:20px;">
+      <button type="submit" style="background:none;border:none;color:#a0aec0;cursor:pointer;text-decoration:underline;">Logout</button>
+    </form>
+  </div>
+
+  <div style="flex-grow:1;padding:20px;">
+    <div style="background:white;padding:20px;margin-bottom:20px;border-radius:5px;">
+      <h1>Welcome, Admin</h1>
+      <p>Control hospital operations from here.</p>
+    </div>
+    <div style="background:white;padding:20px;border-radius:5px;">
+      <h2>Current Operations Overview</h2>
+      <p>Example: Quick summary of today's activities.</p>
+    </div>
+  </div>
+</body>
+</html>
